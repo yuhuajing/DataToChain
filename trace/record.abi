@@ -1,0 +1,185 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "OwnableInvalidOwner",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "OwnableUnauthorizedAccount",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "number",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "workLocation",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "workContent",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "person",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "advice",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "workTime",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "remarks",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "imagesUrl",
+				"type": "string"
+			}
+		],
+		"name": "addRecord",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "number",
+				"type": "string"
+			}
+		],
+		"name": "getRecord",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "workLocation",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "workContent",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "person",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "advice",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "workTime",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "remarks",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "imagesUrl",
+						"type": "string"
+					}
+				],
+				"internalType": "struct WorkRecord.WorkDetails",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
