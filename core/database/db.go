@@ -13,10 +13,10 @@ func GetAddressKey(user string, address common.Address) string {
 	dba := config.Dba
 	addr := strings.ToLower(address.String())
 
-	result := dba.Where("user = ? and address = ?", user, addr).Find(&tabletypes.AddressKey{}).Limit(1)
+	result := dba.Where("shuser = ? and shaddress = ?", user, addr).Find(&tabletypes.AddressKey{}).Limit(1)
 	var res = &tabletypes.AddressKey{}
 	result.Scan(res)
-	return res.Key
+	return res.Shkey
 }
 
 // func Insert(dba *gorm.DB, logdata *types.Log) {
@@ -24,12 +24,12 @@ func InsertAddressKey(user string, address common.Address, key string) {
 	dba := config.Dba
 	addr := strings.ToLower(address.String())
 
-	result := dba.Where("address = ?", addr).Find(&tabletypes.AddressKey{})
+	result := dba.Where("shaddress = ?", addr).Find(&tabletypes.AddressKey{})
 	if result.RowsAffected == 0 {
 		dba.Create(&tabletypes.AddressKey{
-			User:    user,
-			Address: addr,
-			Key:     key,
+			Shuser:    user,
+			Shaddress: addr,
+			Shkey:     key,
 		})
 	}
 }
@@ -43,17 +43,17 @@ func GetContracts() (bool, string, uint64) {
 	}
 	var res = &tabletypes.Contracts{}
 	result.Scan(res)
-	return true, res.Address, res.Block
+	return true, res.Shaddress, res.Shblock
 }
 
 func InsertContracts(address common.Address, number uint64) {
 	dba := config.Dba
 	addr := strings.ToLower(address.String())
-	result := dba.Where("address = ?", addr).Find(&tabletypes.Contracts{})
+	result := dba.Where("shaddress = ?", addr).Find(&tabletypes.Contracts{})
 	if result.RowsAffected == 0 {
 		dba.Create(&tabletypes.Contracts{
-			Address: addr,
-			Block:   number,
+			Shaddress: addr,
+			Shblock:   number,
 		})
 	}
 }
@@ -80,13 +80,13 @@ func InsertLogs(contract common.Address, log types.Log) {
 	if result.RowsAffected == 0 {
 		dba.Create(&tabletypes.Assert{
 			Blocknumber: blocknum.Uint64(),
-			Timestamp:   ts.Uint64(),
-			From:        sender,
-			Nonce:       nonce,
-			To:          to,
-			Amount:      amount.Uint64(),
-			Types:       op,
-			Logindex:    index,
+			Shtimestamp: ts.Uint64(),
+			Shfrom:      sender,
+			Shnonce:     nonce,
+			Shto:        to,
+			Shamount:    amount.Uint64(),
+			Shtypes:     op,
+			Shlogindex:  index,
 			Txhash:      txhash,
 		})
 	}

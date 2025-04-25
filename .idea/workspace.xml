@@ -15,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/app-amd64.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/common/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/dbconn/dnconn.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/dbconn/dnconn.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/ethconn/ethconn.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/ethconn/ethconn.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/tabletypes/type.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/tabletypes/type.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/blocktime/blocknum.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/blocknumber/blocknum.go" afterDir="false" />

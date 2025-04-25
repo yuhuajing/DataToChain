@@ -1,27 +1,27 @@
 package tabletypes
 
 type AddressKey struct {
-	ID      uint   `gorm:"primary_key"`
-	User    string `gorm:"user"`
-	Address string `json:"address"`
-	Key     string `json:"key"`
+	ID        uint   `gorm:"primary_key"`
+	Shuser    string `gorm:"shuser"`
+	Shaddress string `json:"shaddress"`
+	Shkey     string `json:"shkey"`
 }
 
 type Contracts struct {
-	ID      uint   `gorm:"primary_key"`
-	Address string `json:"address"`
-	Block   uint64 `json:"block"`
+	ID        uint   `gorm:"primary_key"`
+	Shaddress string `json:"shaddress"`
+	Shblock   uint64 `json:"shblock"`
 }
 
 type Assert struct {
 	ID          uint   `gorm:"primary_key"`
 	Blocknumber uint64 `json:"blocknumber"`
-	Timestamp   uint64 `json:"timestamp"`
-	From        string `json:"from" gencodec:"required"`
-	Nonce       uint64 `json:"nonce"`
-	To          string `json:"to" gencodec:"required"`
-	Amount      uint64 `json:"amount"`
-	Types       string `json:"types"`
-	Logindex    uint   `json:"logindex"`
+	Shtimestamp uint64 `json:"shtimestamp"`
+	Shfrom      string `json:"shfrom" gencodec:"required"`
+	Shnonce     uint64 `json:"shnonce"`
+	Shto        string `json:"shto" gencodec:"required"`
+	Shamount    uint64 `json:"shamount"`
+	Shtypes     string `json:"shtypes"`
+	Shlogindex  uint   `json:"shlogindex"`
 	Txhash      string `json:"txhash" gencodec:"required"`
 }
