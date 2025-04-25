@@ -1,52 +1,54 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.19;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+contract Lock {
+    mapping(address => uint256) public Locked;
+    mapping(Op=>mapping(uint64 => bool)) public used;
 
-contract WorkRecord is Ownable {
-    struct WorkDetails {
-        string workLocation;
-        string workContent;
-        string person;
-        string advice;
-        string workTime;
-        string remarks;
-        string imagesUrl;
+    enum Op {
+        deposit,
+        withdrawl
+    }
+    event Assert(
+        address from,
+        uint64 nonce,
+        uint256 amount,
+        uint256 blocknum,
+        uint256 timestamp,
+        Op op
+    );
+
+    constructor() {}
+
+    function deposit(uint64 nonce) external payable {
+        uint256 amount = msg.value;
+        address sender = msg.sender;
+        Locked[sender] += amount;
+        require(!used[Op.deposit][nonce]);
+        used[Op.deposit][nonce] = true;
+        emit Assert(
+            sender,
+            nonce,
+            amount,
+            block.number,
+            block.timestamp,
+            Op.deposit
+        );
     }
 
-    constructor() Ownable(msg.sender) {}
-
-    // Mapping from number to WorkDetails
-    mapping(string => WorkDetails) private records;
-
-    // Function to write records, only callable by the owner
-    function addRecord(
-        string memory number,
-        string memory workLocation,
-        string memory workContent,
-        string memory person,
-        string memory advice,
-        string memory workTime,
-        string memory remarks,
-        string memory imagesUrl
-    ) public onlyOwner {
-        records[number] = WorkDetails({
-            workLocation: workLocation,
-            workContent: workContent,
-            person: person,
-            advice: advice,
-            workTime: workTime,
-            remarks: remarks,
-            imagesUrl: imagesUrl
-        });
-    }
-
-    // Function to read records by number
-    function getRecord(string memory number)
-    public
-    view
-    returns (WorkDetails memory)
-    {
-        return records[number];
+    function withdrawl(uint64 amount, uint64 nonce) external {
+        address sender = msg.sender;
+        Locked[sender] -= amount;
+        payable(sender).transfer(amount);
+        require(!used[Op.withdrawl][nonce]);
+        used[Op.withdrawl][nonce] = true;
+        emit Assert(
+            sender,
+            nonce,
+            amount,
+            block.number,
+            block.timestamp,
+            Op.withdrawl
+        );
     }
 }

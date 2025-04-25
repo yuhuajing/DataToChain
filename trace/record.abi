@@ -5,179 +5,118 @@
 		"type": "constructor"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "OwnableInvalidOwner",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "OwnableUnauthorizedAccount",
-		"type": "error"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
+				"indexed": false,
 				"internalType": "address",
-				"name": "previousOwner",
+				"name": "from",
 				"type": "address"
 			},
 			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
+				"indexed": false,
+				"internalType": "uint64",
+				"name": "nonce",
+				"type": "uint64"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "blocknum",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum Lock.Op",
+				"name": "op",
+				"type": "uint8"
 			}
 		],
-		"name": "OwnershipTransferred",
+		"name": "Assert",
 		"type": "event"
 	},
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "number",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "workLocation",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "workContent",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "person",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "advice",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "workTime",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "remarks",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "imagesUrl",
-				"type": "string"
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
-		"name": "addRecord",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "number",
-				"type": "string"
-			}
-		],
-		"name": "getRecord",
+		"name": "Locked",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "workLocation",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "workContent",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "person",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "advice",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "workTime",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "remarks",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "imagesUrl",
-						"type": "string"
-					}
-				],
-				"internalType": "struct WorkRecord.WorkDetails",
+				"internalType": "uint256",
 				"name": "",
-				"type": "tuple"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "owner",
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "nonce",
+				"type": "uint64"
+			}
+		],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum Lock.Op",
+				"name": "",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint64",
+				"name": "",
+				"type": "uint64"
+			}
+		],
+		"name": "used",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "bool",
 				"name": "",
-				"type": "address"
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
+				"internalType": "uint64",
+				"name": "amount",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint64",
+				"name": "nonce",
+				"type": "uint64"
 			}
 		],
-		"name": "transferOwnership",
+		"name": "withdrawl",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

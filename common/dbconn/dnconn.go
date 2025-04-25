@@ -42,5 +42,6 @@ func Buildconnect() *gorm.DB {
 
 	dba.AutoMigrate(tabletypes.AddressKey{})
 	dba.AutoMigrate(tabletypes.Contracts{})
+	dba.AutoMigrate(tabletypes.Assert{})
 	return dba
 }

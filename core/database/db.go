@@ -7,9 +7,17 @@ import (
 	"main/common/tabletypes"
 	"main/trace"
 	"strings"
-
-	"github.com/jinzhu/gorm"
 )
+
+func GetAddressKey(user string, address common.Address) string {
+	dba := config.Dba
+	addr := strings.ToLower(address.String())
+
+	result := dba.Where("user = ? and address = ?", user, addr).Find(&tabletypes.AddressKey{}).Limit(1)
+	var res = &tabletypes.AddressKey{}
+	result.Scan(res)
+	return res.Key
+}
 
 // func Insert(dba *gorm.DB, logdata *types.Log) {
 func InsertAddressKey(user string, address common.Address, key string) {
@@ -26,15 +34,16 @@ func InsertAddressKey(user string, address common.Address, key string) {
 	}
 }
 
-func GetAddressKey(user string, address common.Address) *tabletypes.AddressKey {
+func GetContracts() (bool, string, uint64) {
 	dba := config.Dba
-	addr := strings.ToLower(address.String())
 
-	result := dba.Where("user = ? and address = ?", user, addr).Find(&tabletypes.AddressKey{}).Limit(1)
-
-	var res = &tabletypes.AddressKey{}
+	result := dba.First(&tabletypes.Contracts{})
+	if result.RowsAffected == 0 {
+		return false, "", 0
+	}
+	var res = &tabletypes.Contracts{}
 	result.Scan(res)
-	return res
+	return true, res.Address, res.Block
 }
 
 func InsertContracts(address common.Address, number uint64) {
@@ -50,42 +59,35 @@ func InsertContracts(address common.Address, number uint64) {
 }
 
 func InsertLogs(contract common.Address, log types.Log) {
-
 	filter, _ := trace.NewTraceFilterer(contract, config.Client)
-
-	data, _ := filter.ParseOwnershipTransferred(log)
-	dba := config.Dba
-	addr := strings.ToLower(address.String())
-	result := dba.Where("address = ?", addr).Find(&tabletypes.Contracts{})
-	if result.RowsAffected == 0 {
-		dba.Create(&tabletypes.Contracts{
-			Address: addr,
-			Block:   number,
-		})
+	data, _ := filter.ParseAssert(log)
+	blocknum := data.Blocknum
+	ts := data.Timestamp
+	sender := strings.ToLower(data.From.Hex())
+	nonce := data.Nonce
+	to := strings.ToLower(log.Address.Hex())
+	amount := data.Amount
+	var op = "deposit"
+	if data.Op == 1 {
+		op = "withdrawl"
 	}
-}
+	index := log.Index
+	txhash := log.TxHash.Hex()
 
-func GetContracts() (bool, string, uint64) {
 	dba := config.Dba
 
-	result := dba.Find(&tabletypes.Contracts{}).Limit(1)
+	result := dba.Where("txhash = ?", txhash).Find(&tabletypes.Assert{})
 	if result.RowsAffected == 0 {
-		return false, "", 0
-	}
-	var res = &tabletypes.Contracts{}
-	result.Scan(res)
-	return true, res.Address, res.Block
-}
-
-func ModifyOwner(db *gorm.DB, address string, id int, owner string) {
-	res := db.Model(&tabletypes.Owner{}).Where("address = ? AND tokenid = ?", address, id).First(&tabletypes.Owner{})
-	if res.RowsAffected == 0 {
-		db.Create(&tabletypes.Owner{
-			Address: address,
-			Owner:   owner,
-			Tokenid: int64(id),
+		dba.Create(&tabletypes.Assert{
+			Blocknumber: blocknum.Uint64(),
+			Timestamp:   ts.Uint64(),
+			From:        sender,
+			Nonce:       nonce,
+			To:          to,
+			Amount:      amount.Uint64(),
+			Types:       op,
+			Logindex:    index,
+			Txhash:      txhash,
 		})
-	} else {
-		db.Model(&tabletypes.Owner{}).Where("address = ? AND tokenid = ?", address, id).Update("owner", owner)
 	}
 }

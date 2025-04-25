@@ -29,21 +29,10 @@ var (
 	_ = abi.ConvertType
 )
 
-// WorkRecordWorkDetails is an auto generated low-level Go binding around an user-defined struct.
-type WorkRecordWorkDetails struct {
-	WorkLocation string
-	WorkContent  string
-	Person       string
-	Advice       string
-	WorkTime     string
-	Remarks      string
-	ImagesUrl    string
-}
-
 // TraceMetaData contains all meta data concerning the Trace contract.
 var TraceMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"number\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"workLocation\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"workContent\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"person\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"advice\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"workTime\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"remarks\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imagesUrl\",\"type\":\"string\"}],\"name\":\"addRecord\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"number\",\"type\":\"string\"}],\"name\":\"getRecord\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"workLocation\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"workContent\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"person\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"advice\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"workTime\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"remarks\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imagesUrl\",\"type\":\"string\"}],\"internalType\":\"structWorkRecord.WorkDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
-	Bin: "0x608060405234801561001057600080fd5b50338061003757604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b61004081610046565b50610096565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b610c16806100a56000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806311dd88451461005c578063715018a6146100855780638da5cb5b1461008f578063abafeb1e146100aa578063f2fde38b146100bd575b600080fd5b61006f61006a3660046107a8565b6100d0565b60405161007c9190610835565b60405180910390f35b61008d61053e565b005b6000546040516001600160a01b03909116815260200161007c565b61008d6100b836600461090b565b610552565b61008d6100cb366004610a4b565b610645565b6101106040518060e00160405280606081526020016060815260200160608152602001606081526020016060815260200160608152602001606081525090565b6001826040516101209190610a7b565b90815260200160405180910390206040518060e001604052908160008201805461014990610a97565b80601f016020809104026020016040519081016040528092919081815260200182805461017590610a97565b80156101c25780601f10610197576101008083540402835291602001916101c2565b820191906000526020600020905b8154815290600101906020018083116101a557829003601f168201915b505050505081526020016001820180546101db90610a97565b80601f016020809104026020016040519081016040528092919081815260200182805461020790610a97565b80156102545780601f1061022957610100808354040283529160200191610254565b820191906000526020600020905b81548152906001019060200180831161023757829003601f168201915b5050505050815260200160028201805461026d90610a97565b80601f016020809104026020016040519081016040528092919081815260200182805461029990610a97565b80156102e65780601f106102bb576101008083540402835291602001916102e6565b820191906000526020600020905b8154815290600101906020018083116102c957829003601f168201915b505050505081526020016003820180546102ff90610a97565b80601f016020809104026020016040519081016040528092919081815260200182805461032b90610a97565b80156103785780601f1061034d57610100808354040283529160200191610378565b820191906000526020600020905b81548152906001019060200180831161035b57829003601f168201915b5050505050815260200160048201805461039190610a97565b80601f01602080910402602001604051908101604052809291908181526020018280546103bd90610a97565b801561040a5780601f106103df5761010080835404028352916020019161040a565b820191906000526020600020905b8154815290600101906020018083116103ed57829003601f168201915b5050505050815260200160058201805461042390610a97565b80601f016020809104026020016040519081016040528092919081815260200182805461044f90610a97565b801561049c5780601f106104715761010080835404028352916020019161049c565b820191906000526020600020905b81548152906001019060200180831161047f57829003601f168201915b505050505081526020016006820180546104b590610a97565b80601f01602080910402602001604051908101604052809291908181526020018280546104e190610a97565b801561052e5780601f106105035761010080835404028352916020019161052e565b820191906000526020600020905b81548152906001019060200180831161051157829003601f168201915b5050505050815250509050919050565b610546610688565b61055060006106b5565b565b61055a610688565b6040518060e001604052808881526020018781526020018681526020018581526020018481526020018381526020018281525060018960405161059d9190610a7b565b908152604051908190036020019020815181906105ba9082610b20565b50602082015160018201906105cf9082610b20565b50604082015160028201906105e49082610b20565b50606082015160038201906105f99082610b20565b506080820151600482019061060e9082610b20565b5060a082015160058201906106239082610b20565b5060c082015160068201906106389082610b20565b5050505050505050505050565b61064d610688565b6001600160a01b03811661067c57604051631e4fbdf760e01b8152600060048201526024015b60405180910390fd5b610685816106b5565b50565b6000546001600160a01b031633146105505760405163118cdaa760e01b8152336004820152602401610673565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261072c57600080fd5b813567ffffffffffffffff8082111561074757610747610705565b604051601f8301601f19908116603f0116810190828211818310171561076f5761076f610705565b8160405283815286602085880101111561078857600080fd5b836020870160208301376000602085830101528094505050505092915050565b6000602082840312156107ba57600080fd5b813567ffffffffffffffff8111156107d157600080fd5b6107dd8482850161071b565b949350505050565b60005b838110156108005781810151838201526020016107e8565b50506000910152565b600081518084526108218160208601602086016107e5565b601f01601f19169290920160200192915050565b602081526000825160e06020840152610852610100840182610809565b90506020840151601f19808584030160408601526108708383610809565b9250604086015191508085840301606086015261088d8383610809565b925060608601519150808584030160808601526108aa8383610809565b925060808601519150808584030160a08601526108c78383610809565b925060a08601519150808584030160c08601526108e48383610809565b925060c08601519150808584030160e0860152506109028282610809565b95945050505050565b600080600080600080600080610100898b03121561092857600080fd5b883567ffffffffffffffff8082111561094057600080fd5b61094c8c838d0161071b565b995060208b013591508082111561096257600080fd5b61096e8c838d0161071b565b985060408b013591508082111561098457600080fd5b6109908c838d0161071b565b975060608b01359150808211156109a657600080fd5b6109b28c838d0161071b565b965060808b01359150808211156109c857600080fd5b6109d48c838d0161071b565b955060a08b01359150808211156109ea57600080fd5b6109f68c838d0161071b565b945060c08b0135915080821115610a0c57600080fd5b610a188c838d0161071b565b935060e08b0135915080821115610a2e57600080fd5b50610a3b8b828c0161071b565b9150509295985092959890939650565b600060208284031215610a5d57600080fd5b81356001600160a01b0381168114610a7457600080fd5b9392505050565b60008251610a8d8184602087016107e5565b9190910192915050565b600181811c90821680610aab57607f821691505b602082108103610acb57634e487b7160e01b600052602260045260246000fd5b50919050565b601f821115610b1b57600081815260208120601f850160051c81016020861015610af85750805b601f850160051c820191505b81811015610b1757828155600101610b04565b5050505b505050565b815167ffffffffffffffff811115610b3a57610b3a610705565b610b4e81610b488454610a97565b84610ad1565b602080601f831160018114610b835760008415610b6b5750858301515b600019600386901b1c1916600185901b178555610b17565b600085815260208120601f198616915b82811015610bb257888601518255948401946001909101908401610b93565b5085821015610bd05787850151600019600388901b60f8161c191681555b5050505050600190811b0190555056fea26469706673582212208ad206f52f6f71c5bfa11169bff4a8caf78d92b9bfbfbb13b90cad1b9880640b64736f6c63430008140033",
+	ABI: "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"blocknum\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enumLock.Op\",\"name\":\"op\",\"type\":\"uint8\"}],\"name\":\"Assert\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"Locked\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enumLock.Op\",\"name\":\"\",\"type\":\"uint8\"},{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"used\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"amount\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"}],\"name\":\"withdrawl\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	Bin: "0x608060405234801561001057600080fd5b50610927806100206000396000f3fe60806040526004361061003f5760003560e01c8063137658381461004457806331672eeb1461006057806344427e3014610089578063aa17ab1b146100c6575b600080fd5b61005e60048036038101906100599190610501565b610103565b005b34801561006c57600080fd5b506100876004803603810190610082919061052e565b610291565b005b34801561009557600080fd5b506100b060048036038101906100ab91906105cc565b610475565b6040516100bd9190610612565b60405180910390f35b3480156100d257600080fd5b506100ed60048036038101906100e89190610652565b61048d565b6040516100fa91906106ad565b60405180910390f35b60003490506000339050816000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600082825461015b91906106f7565b92505081905550600160008060018111156101795761017861072b565b5b600181111561018b5761018a61072b565b5b815260200190815260200160002060008467ffffffffffffffff1667ffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16156101d657600080fd5b60018060008060018111156101ee576101ed61072b565b5b6001811115610200576101ff61072b565b5b815260200190815260200160002060008567ffffffffffffffff1667ffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055507f87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f70381848443426000604051610284969594939291906107c0565b60405180910390a1505050565b60003390508267ffffffffffffffff166000808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282546102ee9190610821565b925050819055508073ffffffffffffffffffffffffffffffffffffffff166108fc8467ffffffffffffffff169081150290604051600060405180830381858888f19350505050158015610345573d6000803e3d6000fd5b506001600060018081111561035d5761035c61072b565b5b600181111561036f5761036e61072b565b5b815260200190815260200160002060008367ffffffffffffffff1667ffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16156103ba57600080fd5b60018060006001808111156103d2576103d161072b565b5b60018111156103e4576103e361072b565b5b815260200190815260200160002060008467ffffffffffffffff1667ffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055507f87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f7038183854342600160405161046896959493929190610890565b60405180910390a1505050565b60006020528060005260406000206000915090505481565b60016020528160005260406000206020528060005260406000206000915091509054906101000a900460ff1681565b600080fd5b600067ffffffffffffffff82169050919050565b6104de816104c1565b81146104e957600080fd5b50565b6000813590506104fb816104d5565b92915050565b600060208284031215610517576105166104bc565b5b6000610525848285016104ec565b91505092915050565b60008060408385031215610545576105446104bc565b5b6000610553858286016104ec565b9250506020610564858286016104ec565b9150509250929050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006105998261056e565b9050919050565b6105a98161058e565b81146105b457600080fd5b50565b6000813590506105c6816105a0565b92915050565b6000602082840312156105e2576105e16104bc565b5b60006105f0848285016105b7565b91505092915050565b6000819050919050565b61060c816105f9565b82525050565b60006020820190506106276000830184610603565b92915050565b6002811061063a57600080fd5b50565b60008135905061064c8161062d565b92915050565b60008060408385031215610669576106686104bc565b5b60006106778582860161063d565b9250506020610688858286016104ec565b9150509250929050565b60008115159050919050565b6106a781610692565b82525050565b60006020820190506106c2600083018461069e565b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b6000610702826105f9565b915061070d836105f9565b9250828201905080821115610725576107246106c8565b5b92915050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052602160045260246000fd5b6107638161058e565b82525050565b610772816104c1565b82525050565b600281106107895761078861072b565b5b50565b600081905061079a82610778565b919050565b60006107aa8261078c565b9050919050565b6107ba8161079f565b82525050565b600060c0820190506107d5600083018961075a565b6107e26020830188610769565b6107ef6040830187610603565b6107fc6060830186610603565b6108096080830185610603565b61081660a08301846107b1565b979650505050505050565b600061082c826105f9565b9150610837836105f9565b925082820390508181111561084f5761084e6106c8565b5b92915050565b6000819050919050565b600061087a610875610870846104c1565b610855565b6105f9565b9050919050565b61088a8161085f565b82525050565b600060c0820190506108a5600083018961075a565b6108b26020830188610769565b6108bf6040830187610881565b6108cc6060830186610603565b6108d96080830185610603565b6108e660a08301846107b1565b97965050505050505056fea26469706673582212204fb8ecaf3c1995f1a2e4fbe32029b464df8672f46941d6e54770ac56b345710f64736f6c63430008130033",
 }
 
 // TraceABI is the input ABI used to generate the binding from.
@@ -213,134 +202,113 @@ func (_Trace *TraceTransactorRaw) Transact(opts *bind.TransactOpts, method strin
 	return _Trace.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetRecord is a free data retrieval call binding the contract method 0x11dd8845.
+// Locked is a free data retrieval call binding the contract method 0x44427e30.
 //
-// Solidity: function getRecord(string number) view returns((string,string,string,string,string,string,string))
-func (_Trace *TraceCaller) GetRecord(opts *bind.CallOpts, number string) (WorkRecordWorkDetails, error) {
+// Solidity: function Locked(address ) view returns(uint256)
+func (_Trace *TraceCaller) Locked(opts *bind.CallOpts, arg0 common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _Trace.contract.Call(opts, &out, "getRecord", number)
+	err := _Trace.contract.Call(opts, &out, "Locked", arg0)
 
 	if err != nil {
-		return *new(WorkRecordWorkDetails), err
+		return *new(*big.Int), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(WorkRecordWorkDetails)).(*WorkRecordWorkDetails)
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
 
 	return out0, err
 
 }
 
-// GetRecord is a free data retrieval call binding the contract method 0x11dd8845.
+// Locked is a free data retrieval call binding the contract method 0x44427e30.
 //
-// Solidity: function getRecord(string number) view returns((string,string,string,string,string,string,string))
-func (_Trace *TraceSession) GetRecord(number string) (WorkRecordWorkDetails, error) {
-	return _Trace.Contract.GetRecord(&_Trace.CallOpts, number)
+// Solidity: function Locked(address ) view returns(uint256)
+func (_Trace *TraceSession) Locked(arg0 common.Address) (*big.Int, error) {
+	return _Trace.Contract.Locked(&_Trace.CallOpts, arg0)
 }
 
-// GetRecord is a free data retrieval call binding the contract method 0x11dd8845.
+// Locked is a free data retrieval call binding the contract method 0x44427e30.
 //
-// Solidity: function getRecord(string number) view returns((string,string,string,string,string,string,string))
-func (_Trace *TraceCallerSession) GetRecord(number string) (WorkRecordWorkDetails, error) {
-	return _Trace.Contract.GetRecord(&_Trace.CallOpts, number)
+// Solidity: function Locked(address ) view returns(uint256)
+func (_Trace *TraceCallerSession) Locked(arg0 common.Address) (*big.Int, error) {
+	return _Trace.Contract.Locked(&_Trace.CallOpts, arg0)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// Used is a free data retrieval call binding the contract method 0xaa17ab1b.
 //
-// Solidity: function owner() view returns(address)
-func (_Trace *TraceCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function used(uint8 , uint64 ) view returns(bool)
+func (_Trace *TraceCaller) Used(opts *bind.CallOpts, arg0 uint8, arg1 uint64) (bool, error) {
 	var out []interface{}
-	err := _Trace.contract.Call(opts, &out, "owner")
+	err := _Trace.contract.Call(opts, &out, "used", arg0, arg1)
 
 	if err != nil {
-		return *new(common.Address), err
+		return *new(bool), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
 
 	return out0, err
 
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// Used is a free data retrieval call binding the contract method 0xaa17ab1b.
 //
-// Solidity: function owner() view returns(address)
-func (_Trace *TraceSession) Owner() (common.Address, error) {
-	return _Trace.Contract.Owner(&_Trace.CallOpts)
+// Solidity: function used(uint8 , uint64 ) view returns(bool)
+func (_Trace *TraceSession) Used(arg0 uint8, arg1 uint64) (bool, error) {
+	return _Trace.Contract.Used(&_Trace.CallOpts, arg0, arg1)
 }
 
-// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+// Used is a free data retrieval call binding the contract method 0xaa17ab1b.
 //
-// Solidity: function owner() view returns(address)
-func (_Trace *TraceCallerSession) Owner() (common.Address, error) {
-	return _Trace.Contract.Owner(&_Trace.CallOpts)
+// Solidity: function used(uint8 , uint64 ) view returns(bool)
+func (_Trace *TraceCallerSession) Used(arg0 uint8, arg1 uint64) (bool, error) {
+	return _Trace.Contract.Used(&_Trace.CallOpts, arg0, arg1)
 }
 
-// AddRecord is a paid mutator transaction binding the contract method 0xabafeb1e.
+// Deposit is a paid mutator transaction binding the contract method 0x13765838.
 //
-// Solidity: function addRecord(string number, string workLocation, string workContent, string person, string advice, string workTime, string remarks, string imagesUrl) returns()
-func (_Trace *TraceTransactor) AddRecord(opts *bind.TransactOpts, number string, workLocation string, workContent string, person string, advice string, workTime string, remarks string, imagesUrl string) (*types.Transaction, error) {
-	return _Trace.contract.Transact(opts, "addRecord", number, workLocation, workContent, person, advice, workTime, remarks, imagesUrl)
+// Solidity: function deposit(uint64 nonce) payable returns()
+func (_Trace *TraceTransactor) Deposit(opts *bind.TransactOpts, nonce uint64) (*types.Transaction, error) {
+	return _Trace.contract.Transact(opts, "deposit", nonce)
 }
 
-// AddRecord is a paid mutator transaction binding the contract method 0xabafeb1e.
+// Deposit is a paid mutator transaction binding the contract method 0x13765838.
 //
-// Solidity: function addRecord(string number, string workLocation, string workContent, string person, string advice, string workTime, string remarks, string imagesUrl) returns()
-func (_Trace *TraceSession) AddRecord(number string, workLocation string, workContent string, person string, advice string, workTime string, remarks string, imagesUrl string) (*types.Transaction, error) {
-	return _Trace.Contract.AddRecord(&_Trace.TransactOpts, number, workLocation, workContent, person, advice, workTime, remarks, imagesUrl)
+// Solidity: function deposit(uint64 nonce) payable returns()
+func (_Trace *TraceSession) Deposit(nonce uint64) (*types.Transaction, error) {
+	return _Trace.Contract.Deposit(&_Trace.TransactOpts, nonce)
 }
 
-// AddRecord is a paid mutator transaction binding the contract method 0xabafeb1e.
+// Deposit is a paid mutator transaction binding the contract method 0x13765838.
 //
-// Solidity: function addRecord(string number, string workLocation, string workContent, string person, string advice, string workTime, string remarks, string imagesUrl) returns()
-func (_Trace *TraceTransactorSession) AddRecord(number string, workLocation string, workContent string, person string, advice string, workTime string, remarks string, imagesUrl string) (*types.Transaction, error) {
-	return _Trace.Contract.AddRecord(&_Trace.TransactOpts, number, workLocation, workContent, person, advice, workTime, remarks, imagesUrl)
+// Solidity: function deposit(uint64 nonce) payable returns()
+func (_Trace *TraceTransactorSession) Deposit(nonce uint64) (*types.Transaction, error) {
+	return _Trace.Contract.Deposit(&_Trace.TransactOpts, nonce)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// Withdrawl is a paid mutator transaction binding the contract method 0x31672eeb.
 //
-// Solidity: function renounceOwnership() returns()
-func (_Trace *TraceTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Trace.contract.Transact(opts, "renounceOwnership")
+// Solidity: function withdrawl(uint64 amount, uint64 nonce) returns()
+func (_Trace *TraceTransactor) Withdrawl(opts *bind.TransactOpts, amount uint64, nonce uint64) (*types.Transaction, error) {
+	return _Trace.contract.Transact(opts, "withdrawl", amount, nonce)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// Withdrawl is a paid mutator transaction binding the contract method 0x31672eeb.
 //
-// Solidity: function renounceOwnership() returns()
-func (_Trace *TraceSession) RenounceOwnership() (*types.Transaction, error) {
-	return _Trace.Contract.RenounceOwnership(&_Trace.TransactOpts)
+// Solidity: function withdrawl(uint64 amount, uint64 nonce) returns()
+func (_Trace *TraceSession) Withdrawl(amount uint64, nonce uint64) (*types.Transaction, error) {
+	return _Trace.Contract.Withdrawl(&_Trace.TransactOpts, amount, nonce)
 }
 
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+// Withdrawl is a paid mutator transaction binding the contract method 0x31672eeb.
 //
-// Solidity: function renounceOwnership() returns()
-func (_Trace *TraceTransactorSession) RenounceOwnership() (*types.Transaction, error) {
-	return _Trace.Contract.RenounceOwnership(&_Trace.TransactOpts)
+// Solidity: function withdrawl(uint64 amount, uint64 nonce) returns()
+func (_Trace *TraceTransactorSession) Withdrawl(amount uint64, nonce uint64) (*types.Transaction, error) {
+	return _Trace.Contract.Withdrawl(&_Trace.TransactOpts, amount, nonce)
 }
 
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
-//
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_Trace *TraceTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _Trace.contract.Transact(opts, "transferOwnership", newOwner)
-}
-
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
-//
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_Trace *TraceSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _Trace.Contract.TransferOwnership(&_Trace.TransactOpts, newOwner)
-}
-
-// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
-//
-// Solidity: function transferOwnership(address newOwner) returns()
-func (_Trace *TraceTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _Trace.Contract.TransferOwnership(&_Trace.TransactOpts, newOwner)
-}
-
-// TraceOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the Trace contract.
-type TraceOwnershipTransferredIterator struct {
-	Event *TraceOwnershipTransferred // Event containing the contract specifics and raw log
+// TraceAssertIterator is returned from FilterAssert and is used to iterate over the raw logs and unpacked data for Assert events raised by the Trace contract.
+type TraceAssertIterator struct {
+	Event *TraceAssert // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -354,7 +322,7 @@ type TraceOwnershipTransferredIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *TraceOwnershipTransferredIterator) Next() bool {
+func (it *TraceAssertIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -363,7 +331,7 @@ func (it *TraceOwnershipTransferredIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(TraceOwnershipTransferred)
+			it.Event = new(TraceAssert)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -378,7 +346,7 @@ func (it *TraceOwnershipTransferredIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(TraceOwnershipTransferred)
+		it.Event = new(TraceAssert)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -394,60 +362,46 @@ func (it *TraceOwnershipTransferredIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *TraceOwnershipTransferredIterator) Error() error {
+func (it *TraceAssertIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *TraceOwnershipTransferredIterator) Close() error {
+func (it *TraceAssertIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// TraceOwnershipTransferred represents a OwnershipTransferred event raised by the Trace contract.
-type TraceOwnershipTransferred struct {
-	PreviousOwner common.Address
-	NewOwner      common.Address
-	Raw           types.Log // Blockchain specific contextual infos
+// TraceAssert represents a Assert event raised by the Trace contract.
+type TraceAssert struct {
+	From      common.Address
+	Nonce     uint64
+	Amount    *big.Int
+	Blocknum  *big.Int
+	Timestamp *big.Int
+	Op        uint8
+	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+// FilterAssert is a free log retrieval operation binding the contract event 0x87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f703.
 //
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_Trace *TraceFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*TraceOwnershipTransferredIterator, error) {
+// Solidity: event Assert(address from, uint64 nonce, uint256 amount, uint256 blocknum, uint256 timestamp, uint8 op)
+func (_Trace *TraceFilterer) FilterAssert(opts *bind.FilterOpts) (*TraceAssertIterator, error) {
 
-	var previousOwnerRule []interface{}
-	for _, previousOwnerItem := range previousOwner {
-		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
-	}
-	var newOwnerRule []interface{}
-	for _, newOwnerItem := range newOwner {
-		newOwnerRule = append(newOwnerRule, newOwnerItem)
-	}
-
-	logs, sub, err := _Trace.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _Trace.contract.FilterLogs(opts, "Assert")
 	if err != nil {
 		return nil, err
 	}
-	return &TraceOwnershipTransferredIterator{contract: _Trace.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+	return &TraceAssertIterator{contract: _Trace.contract, event: "Assert", logs: logs, sub: sub}, nil
 }
 
-// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+// WatchAssert is a free log subscription operation binding the contract event 0x87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f703.
 //
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_Trace *TraceFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *TraceOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+// Solidity: event Assert(address from, uint64 nonce, uint256 amount, uint256 blocknum, uint256 timestamp, uint8 op)
+func (_Trace *TraceFilterer) WatchAssert(opts *bind.WatchOpts, sink chan<- *TraceAssert) (event.Subscription, error) {
 
-	var previousOwnerRule []interface{}
-	for _, previousOwnerItem := range previousOwner {
-		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
-	}
-	var newOwnerRule []interface{}
-	for _, newOwnerItem := range newOwner {
-		newOwnerRule = append(newOwnerRule, newOwnerItem)
-	}
-
-	logs, sub, err := _Trace.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _Trace.contract.WatchLogs(opts, "Assert")
 	if err != nil {
 		return nil, err
 	}
@@ -457,8 +411,8 @@ func (_Trace *TraceFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(TraceOwnershipTransferred)
-				if err := _Trace.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+				event := new(TraceAssert)
+				if err := _Trace.contract.UnpackLog(event, "Assert", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -479,12 +433,12 @@ func (_Trace *TraceFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sin
 	}), nil
 }
 
-// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+// ParseAssert is a log parse operation binding the contract event 0x87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f703.
 //
-// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_Trace *TraceFilterer) ParseOwnershipTransferred(log types.Log) (*TraceOwnershipTransferred, error) {
-	event := new(TraceOwnershipTransferred)
-	if err := _Trace.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+// Solidity: event Assert(address from, uint64 nonce, uint256 amount, uint256 blocknum, uint256 timestamp, uint8 op)
+func (_Trace *TraceFilterer) ParseAssert(log types.Log) (*TraceAssert, error) {
+	event := new(TraceAssert)
+	if err := _Trace.contract.UnpackLog(event, "Assert", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

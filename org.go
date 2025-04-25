@@ -12,26 +12,36 @@ import (
 	"main/core/sendtx"
 	"main/explorer"
 	"math/big"
-
-	"time"
+	"sync"
 )
 
 func main() {
 	sc, num := sendtx.BuildContract()
-	SubStakingEvent(sc, num)
-	go explorer.Explorer()
-	time.Sleep(10 * time.Second)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	go func(sc common.Address, num uint64) {
+		defer wg.Done() // 确保在协程完成时调用 Done
+		SubStakingEvent(sc, num)
+	}(sc, num)
+
+	explorer.Explorer()
+
+	wg.Wait()
 }
 
 var (
 	logsChan = make(chan types.Log, 0)
 )
 
-func SubStakingEvent(contract common.Address, number uint64) {
+func SubStakingEvent(contractAddress common.Address, number uint64) {
+	//contractAddress := common.HexToAddress("0x28ddd076b87131356c1f70278f64eba3f8de307e")
+
 	query := ethereum.FilterQuery{
-		Addresses: []common.Address{contract},
+		Addresses: []common.Address{contractAddress},
 		FromBlock: big.NewInt(int64(number)),
-		Topics:    [][]common.Hash{{common.HexToHash("")}},
+		Topics:    [][]common.Hash{{common.HexToHash("0x87d092cc8ff72d1243337cb7a4e178708d98aad3ff50ff5ec6abc6457239f703")}},
 	}
 
 	subevents, err := config.Client.SubscribeFilterLogs(context.Background(), query, logsChan)
@@ -45,7 +55,7 @@ func SubStakingEvent(contract common.Address, number uint64) {
 			fmt.Println(fmt.Errorf("Parse Event error: %v", err))
 
 		case lplog := <-logsChan:
-			ethclientevent.ParseEventLog(contract, lplog)
+			ethclientevent.ParseEventLog(contractAddress, lplog)
 		}
 	}
 }

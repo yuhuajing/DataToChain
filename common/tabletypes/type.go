@@ -13,14 +13,15 @@ type Contracts struct {
 	Block   uint64 `json:"block"`
 }
 
-type AssertOperation struct {
+type Assert struct {
 	ID          uint   `gorm:"primary_key"`
 	Blocknumber uint64 `json:"blocknumber"`
-	Timestamp   string `json:"timestamp"`
-	Address     string `json:"address"`
+	Timestamp   uint64 `json:"timestamp"`
 	From        string `json:"from" gencodec:"required"`
+	Nonce       uint64 `json:"nonce"`
 	To          string `json:"to" gencodec:"required"`
-	Txhash      string `json:"txhash" gencodec:"required"`
 	Amount      uint64 `json:"amount"`
 	Types       string `json:"types"`
+	Logindex    uint   `json:"logindex"`
+	Txhash      string `json:"txhash" gencodec:"required"`
 }

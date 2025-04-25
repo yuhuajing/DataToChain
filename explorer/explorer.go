@@ -2,40 +2,42 @@ package explorer
 
 import (
 	"crypto/ecdsa"
-	"encoding/json"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	fiber "github.com/gofiber/fiber/v2"
+	"main/core/blocknumber"
+	"main/core/sendtx"
 
 	"log"
 	"main/core/database"
-	"main/core/sendtx"
 )
 
 func Explorer() {
 	app := fiber.New()
 	app.Post("/chainservice/generateaddress", generateaddress)
-	app.Post("/chainservice/uploadchain", uploadchain)
-	app.Post("/chainservice/updatechain", uploadchain)
-	app.Post("/chainservice/getchain", getchain)
+	app.Post("/chainservice/faucet", faucet)
+	app.Post("/chainservice/balance", balance)
+	app.Post("/chainservice/depositbalance", depositbalance)
+	app.Post("/chainservice/deposit", deposit)
+	app.Post("/chainservice/withdraw", withdraw)
 	log.Fatal(app.Listen(":4000"))
 }
 
 type Info struct {
-	Number       string `json:"number"`
-	Worklocation string `json:"worklocation"`
-	Workcontent  string `json:"workcontent"`
-	Persion      string `json:"persion"`
-	Advice       string `json:"advice"`
-	Worktime     string `json:"worktime"`
-	Remarks      string `json:"remarks"`
-	Imagesurl    string `json:"imagesurl"`
+	Username string `json:"username"`
+	Address  string `json:"address"`
+	Amount   string `json:"amount"`
+	Nonce    uint64 `json:"nonce"`
 }
 
 type GetInfo struct {
 	Number string `json:"number"`
+}
+
+type AddressInfo struct {
+	Address string `json:"address"`
 }
 
 type GetUserName struct {
@@ -48,7 +50,26 @@ type ErrorResponse struct {
 	Data    string `json:"data"`
 }
 
-func uploadchain(c *fiber.Ctx) error {
+func faucet(c *fiber.Ctx) error {
+	c.Set("Access-Control-Allow-Origin", "*")
+	c.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+	c.Set("Access-Control-Allow-Headers", "Content-Type")
+	//fmt.Println(string(c.Body()))
+	payload := &AddressInfo{}
+	if err := c.BodyParser(payload); err != nil {
+		//fmt.Println("Upload Parse error")
+		return c.Status(400).JSON(ErrorResponse{
+			Error:   err.Error(),
+			Success: false,
+			Data:    "",
+		})
+	}
+	hash := sendtx.Faucet(payload.Address)
+	fmt.Println(hash)
+	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: hash})
+}
+
+func withdraw(c *fiber.Ctx) error {
 	c.Set("Access-Control-Allow-Origin", "*")
 	c.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 	c.Set("Access-Control-Allow-Headers", "Content-Type")
@@ -62,17 +83,17 @@ func uploadchain(c *fiber.Ctx) error {
 			Data:    "",
 		})
 	}
-	hash := sendtx.AddOrUpdateUserData(payload.Number, payload.Worklocation, payload.Workcontent, payload.Persion, payload.Advice, payload.Worktime, payload.Remarks, payload.Imagesurl)
+	hash := sendtx.Withdraw(payload.Username, payload.Address, payload.Amount, payload.Nonce)
 	fmt.Println(hash)
 	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: hash})
 }
 
-func getchain(c *fiber.Ctx) error {
+func deposit(c *fiber.Ctx) error {
 	c.Set("Access-Control-Allow-Origin", "*")
 	c.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 	c.Set("Access-Control-Allow-Headers", "Content-Type")
 	//fmt.Println(string(c.Body()))
-	payload := &GetInfo{}
+	payload := &Info{}
 	if err := c.BodyParser(payload); err != nil {
 		//fmt.Println("Upload Parse error")
 		return c.Status(400).JSON(ErrorResponse{
@@ -81,9 +102,47 @@ func getchain(c *fiber.Ctx) error {
 			Data:    "",
 		})
 	}
-	details := sendtx.GetUserData(payload.Number)
-	data, _ := json.Marshal(details)
-	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: string(data)})
+	hash := sendtx.Deposit(payload.Username, payload.Address, payload.Amount, payload.Nonce)
+	fmt.Println(hash)
+	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: hash})
+}
+
+func balance(c *fiber.Ctx) error {
+	c.Set("Access-Control-Allow-Origin", "*")
+	c.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+	c.Set("Access-Control-Allow-Headers", "Content-Type")
+	//fmt.Println(string(c.Body()))
+	payload := &AddressInfo{}
+	if err := c.BodyParser(payload); err != nil {
+		//fmt.Println("Upload Parse error")
+		return c.Status(400).JSON(ErrorResponse{
+			Error:   err.Error(),
+			Success: false,
+			Data:    "",
+		})
+	}
+	details := blocknumber.GetAddressBalance(payload.Address)
+
+	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: details})
+}
+
+func depositbalance(c *fiber.Ctx) error {
+	c.Set("Access-Control-Allow-Origin", "*")
+	c.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+	c.Set("Access-Control-Allow-Headers", "Content-Type")
+	//fmt.Println(string(c.Body()))
+	payload := &AddressInfo{}
+	if err := c.BodyParser(payload); err != nil {
+		//fmt.Println("Upload Parse error")
+		return c.Status(400).JSON(ErrorResponse{
+			Error:   err.Error(),
+			Success: false,
+			Data:    "",
+		})
+	}
+	details := sendtx.GetDepositBalance(payload.Address)
+
+	return c.Status(200).JSON(ErrorResponse{Error: "", Success: true, Data: details})
 }
 
 func generateaddress(c *fiber.Ctx) error {
